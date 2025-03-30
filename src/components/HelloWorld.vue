@@ -1,10 +1,14 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>{{ message }}</h2>
-    <input type="text" v-model="message" />
-    <a v-bind:href="url" target="_blank">This is a link</a>
-    <a :href="url" target="_blank">This is a link2</a>
+    <input type="password" v-model="password" />
+    <p v-if="password.length == 0">Enter a password</p>
+    <p v-else-if="password.length > 0 && password.length < 8">
+      It require minimum 8 letters.
+    </p>
+    <p v-else>Good job, go ahead and submit form.</p>
+    <button v-show="password.length >= 8">
+      <a :href="url" target="_blank">Submit</a>
+    </button>
   </div>
 </template>
 
@@ -16,7 +20,7 @@ export default {
   },
   data() {
     return {
-      message: "Hello this is data property. Vue js is reactive",
+      password: "",
       url: "https://vuejs.org",
     };
   },
