@@ -30,6 +30,7 @@
     <p v-if="isActive">The state is active!</p>
     <p v-else>The state is inactive!</p>
     <input type="text" v-model="message" placeholder="Type something..." />
+    {{ message | capitalize }}
     <p v-if="typing">Typing...</p>
     <p v-else>Not typing...</p>
   </div>
@@ -40,6 +41,13 @@ export default {
   name: "HelloWorld",
   props: {
     msg: String,
+  },
+  filters: {
+    capitalize(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
   },
   data() {
     return {
