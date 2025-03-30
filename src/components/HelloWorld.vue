@@ -7,7 +7,7 @@
 
     <h3>Todo List</h3>
     <ul>
-      <li v-for="(todo, index) in todos" :key="index">
+      <li v-for="(todo, index) in incompletedTodos" :key="index">
         <span :style="{ textDecoration: todo.completed ? 'line-through' : '' }">
           {{ todo.text }}
         </span>
@@ -16,6 +16,16 @@
     </ul>
     <input v-model="newTodo" placeholder="Add a new todo" />
     <button @click="addnewTodo()">Add Todo</button>
+    {{ newMessageLetterCount }}
+    <h3>Completed Tasks</h3>
+    <ul>
+      <li v-for="(todo, index) in completedTodos" :key="index">
+        <span :style="{ textDecoration: todo.completed ? 'line-through' : '' }">
+          {{ todo.text }}
+        </span>
+        <button @click="removeTodo()">Remove Todo</button>
+      </li>
+    </ul>
     <h3>Active State</h3>
     <p v-if="isActive">The state is active!</p>
     <p v-else>The state is inactive!</p>
@@ -40,6 +50,17 @@ export default {
       ],
       isActive: true,
     };
+  },
+  computed: {
+    newMessageLetterCount() {
+      return this.newTodo.length;
+    },
+    completedTodos() {
+      return this.todos.filter((todo) => todo.completed);
+    },
+    incompletedTodos() {
+      return this.todos.filter((todo) => !todo.completed);
+    },
   },
   methods: {
     addnewTodo() {
