@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ counter }}</h1>
-    <button @click="counter++">Increment</button>
-    <button @click.ctrl="counter++">Increment2</button>
+    <button @click="increment()">Increment</button>
+    <button @click="decrement()">decrement</button>
   </div>
 </template>
 
@@ -16,6 +16,14 @@ export default {
     return {
       counter: 0,
     };
+  },
+  methods: {
+    increment() {
+      this.counter++;
+    },
+    decrement() {
+      this.counter--;
+    },
   },
 };
 </script>
