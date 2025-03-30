@@ -29,6 +29,9 @@
     <h3>Active State</h3>
     <p v-if="isActive">The state is active!</p>
     <p v-else>The state is inactive!</p>
+    <input type="text" v-model="message" placeholder="Type something..." />
+    <p v-if="typing">Typing...</p>
+    <p v-else>Not typing...</p>
   </div>
 </template>
 
@@ -41,7 +44,9 @@ export default {
   data() {
     return {
       counter: 0,
+      typing: false,
       newTodo: "",
+      message: "",
       todos: [
         { text: "Learn JavaScript", completed: false },
         { text: "Learn HTML", completed: false },
@@ -60,6 +65,17 @@ export default {
     },
     incompletedTodos() {
       return this.todos.filter((todo) => !todo.completed);
+    },
+  },
+  watch: {
+    message(newValue, oldValue) {
+      console.log("Message changed to: ", newValue);
+      console.log("Message old: ", oldValue);
+      this.typing = true;
+
+      setTimeout(() => {
+        this.typing = false;
+      }, 2000);
     },
   },
   methods: {
