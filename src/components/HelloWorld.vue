@@ -1,14 +1,8 @@
 <template>
   <div class="hello">
-    <input type="password" v-model="password" />
-    <p v-if="password.length == 0">Enter a password</p>
-    <p v-else-if="password.length > 0 && password.length < 8">
-      It require minimum 8 letters.
-    </p>
-    <p v-else>Good job, go ahead and submit form.</p>
-    <button v-show="password.length >= 8">
-      <a :href="url" target="_blank">Submit</a>
-    </button>
+    <h1>{{ counter }}</h1>
+    <button @click="counter++">Increment</button>
+    <button @click.ctrl="counter++">Increment2</button>
   </div>
 </template>
 
@@ -20,8 +14,7 @@ export default {
   },
   data() {
     return {
-      password: "",
-      url: "https://vuejs.org",
+      counter: 0,
     };
   },
 };
