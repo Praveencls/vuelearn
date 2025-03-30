@@ -8,7 +8,9 @@
     <h3>Todo List</h3>
     <ul>
       <li v-for="(todo, index) in todos" :key="index">
-        {{ todo.text }}
+        <span :style="{ textDecoration: todo.completed ? 'line-through' : '' }">
+          {{ todo.text }}
+        </span>
         <button @click="removeTodo()">Remove Todo</button>
       </li>
     </ul>
@@ -31,10 +33,10 @@ export default {
       counter: 0,
       newTodo: "",
       todos: [
-        { text: "Learn JavaScript" },
-        { text: "Learn Vue" },
-        { text: "Learn Vue Router" },
-        { text: "Learn Vuex" },
+        { text: "Learn JavaScript", completed: false },
+        { text: "Learn HTML", completed: false },
+        { text: "Learn CSS", completed: false },
+        { text: "Learn React", completed: true },
       ],
       isActive: true,
     };
