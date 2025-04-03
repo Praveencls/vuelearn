@@ -2,7 +2,7 @@
   <div>
     <h2>Todos List</h2>
     <ul>
-      <todo v-for="(todo, index) in $store.state.todos" :key="index" :todo="todo" />
+      <todo v-for="(todo, index) in todos" :key="index" :todo="todo" />
     </ul>
 
   </div>
@@ -15,10 +15,10 @@ export default {
   components: {
     todo,
   },
-  data() {
-    return {
-    
-    };
+  computed: {
+    todos() {
+      return this.$store.state.todos;
+    }
   },
 };
 </script>
