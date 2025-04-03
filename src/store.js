@@ -13,6 +13,20 @@ export default new Vuex.Store({
 		],
 	},
 	getters: {},
-	mutations: {},
-	actions: {},
+	mutations: {
+		ADD_TODO(state, todo) {
+			state.todos.push({ text: todo, completed: false });
+		},
+		DELETE_TODO(state, todo) {
+			state.todos.splice(state.todos.indexOf(todo), 1);
+		},
+	},
+	actions: {
+		addNewTodo({ commit }, todo) {
+			commit("ADD_TODO", todo);
+		},
+		deleteTodo({ commit }, todo) {
+			commit("DELETE_TODO", todo);
+		},
+	},
 });
