@@ -12,7 +12,23 @@ export default new Vuex.Store({
 			{ text: "Learn React", completed: true },
 		],
 	},
-	getters: {},
+	getters: {
+		allTodos: (state) => {
+			return state.todos;
+		},
+		completedTodos: (state) => {
+			return state.todos.filter((todo) => todo.completed).length;
+		},
+		pendingTodos: (state) => {
+			return state.todos.filter((todo) => !todo.completed).length;
+		},
+		incompleteTodos: (state) => {
+			return state.todos.filter((todo) => !todo.completed);
+		},
+		todoCount: (state) => {
+			return state.todos.length;
+		},
+	},
 	mutations: {
 		ADD_TODO(state, todo) {
 			state.todos.push({ text: todo, completed: false });
@@ -20,6 +36,9 @@ export default new Vuex.Store({
 		DELETE_TODO(state, todo) {
 			state.todos.splice(state.todos.indexOf(todo), 1);
 		},
+		TOGGLE_TODO_STATUS(state, todo) {
+			todo.completed = !todo.completed;
+		}
 	},
 	actions: {
 		addNewTodo({ commit }, todo) {
@@ -28,5 +47,8 @@ export default new Vuex.Store({
 		deleteTodo({ commit }, todo) {
 			commit("DELETE_TODO", todo);
 		},
+		toggleTodoStatus({ commit }, todo) {
+			commit("TOGGLE_TODO_STATUS", todo);
+		}
 	},
 });
