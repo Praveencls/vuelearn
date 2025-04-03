@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import TodosList from "./components/TodosList.vue";
 import TodoForm from "./components/TodoForm.vue";
 
@@ -19,11 +20,8 @@ export default {
     TodoForm
   },
   computed: {
-    completedTodos() {
-      return this.$store.getters.completedTodos;
-    },pendingTodos() {
-      return this.$store.getters.pendingTodos;
-    }
+    ...mapGetters({completedTodos : 'completedTodos', pendingTodos :'pendingTodos'}),
+
   },
 };
 </script>
