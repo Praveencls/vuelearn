@@ -1,10 +1,11 @@
 // formMixin.js
 export default {
-	props: {
-		firstName: String,
-		lastName: String,
-		memo: String,
-        isBusiness: Boolean
+    data() {
+		return {
+			firstName: "",
+			lastName: "",
+			memo: "",
+		};
 	},
 	computed: {
 		isFirstNameValid() {
@@ -27,21 +28,11 @@ export default {
 		updateMemo(value) {
 			this.$emit("update-memo", value);
 		},
-
-		// This method returns the current form data
-		getFormData() {
-			return {
-				firstName: this.firstName,
-				lastName: this.lastName,
-				memo: this.memo,
-			};
-		},
-
 		// Reset form method
 		resetForm() {
 			this.$emit("update-first-name", "");
 			this.$emit("update-last-name", "");
 			this.$emit("update-memo", "");
-		},
+		}
 	},
 };

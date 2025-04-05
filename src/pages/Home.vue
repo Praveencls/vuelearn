@@ -1,6 +1,5 @@
 <template>
   <div>
-    <parent-component></parent-component>
     <parent-form-component :visible="showForm" :isBusiness="isBusiness"></parent-form-component>
     <button @click="toggleFormVisibility">
       {{ showForm ? 'Hide Form' : 'Show Form' }}
@@ -9,11 +8,10 @@
 </template>
 
 <script>
-import ParentComponent from '@/components/ParentComponent.vue';
 import ParentFormComponent from '@/components/ParentFormComponent.vue';
 export default {
   name: "Home",
-  components: {ParentComponent, ParentFormComponent},
+  components: {ParentFormComponent},
   data() {
     return {
       showForm: false, // Initial state is to hide the form
