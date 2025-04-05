@@ -2,25 +2,13 @@
   <div v-show="visible" class="parent-form-component">
     <h1>Parent Form</h1>
     
-    <!-- Child form component -->
-    <ChildForm 
-    ref="childForm"
-      v-bind="formProps" 
-      v-on="formEvents" 
+    <!-- Dynamic component rendering based on isBusiness prop -->
+    <component
+      :is="isBusiness ? 'BusinessForm' : 'PersonalForm'"
+      ref="childForm"
+      v-bind="formProps"
+      v-on="formEvents"
     />
-
-    <!-- Error messages -->
-    <div v-if="!$v.$pending">
-      <div v-if="!$v.firstName.$model">
-        <span class="error">First Name is required.</span>
-      </div>
-      <div v-if="!$v.lastName.$model">
-        <span class="error">Last Name is required.</span>
-      </div>
-      <div v-if="!$v.memo.$model">
-        <span class="error">Memo is required.</span>
-      </div>
-    </div>
 
     <!-- Form buttons -->
     <div>
@@ -32,14 +20,20 @@
 
 <script>
 import { required } from 'vuelidate/lib/validators';  // Import validators from Vuelidate
-import ChildForm from './ChildFormComponent.vue'; // Import child form component
+import PersonalForm from './ChildFormComponent.vue'; // Import child form component
+import BusinessForm from './ChildFormComponent2.vue'; // Import child form component
 
 export default {
   components: {
-    ChildForm
+    PersonalForm,
+    BusinessForm
   },
   props: {
     visible: {
+      type: Boolean,
+      default: false
+    },
+    isBusiness: {
       type: Boolean,
       default: false
     }

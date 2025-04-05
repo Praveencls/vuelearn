@@ -1,7 +1,7 @@
 <template>
   <div>
     <parent-component></parent-component>
-    <parent-form-component :visible="showForm"></parent-form-component>
+    <parent-form-component :visible="showForm" :isBusiness="isBusiness"></parent-form-component>
     <button @click="toggleFormVisibility">
       {{ showForm ? 'Hide Form' : 'Show Form' }}
     </button>
@@ -16,7 +16,8 @@ export default {
   components: {ParentComponent, ParentFormComponent},
   data() {
     return {
-      showForm: false // Initial state is to hide the form
+      showForm: false, // Initial state is to hide the form
+      isBusiness: true // This can be set based on your logic
     };
   },
   methods: {

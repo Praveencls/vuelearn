@@ -11,19 +11,7 @@
       />
       <div v-if="!isFirstNameValid" class="error">First Name is required</div>
     </div>
-
-    <div>
-      <label for="lastName">Last Name:</label>
-      <input
-        type="text"
-        id="lastName"
-        :value="lastName"
-        @input="updateLastName($event.target.value)"
-        :class="{'error': !isLastNameValid}"
-      />
-      <div v-if="!isLastNameValid" class="error">Last Name is required</div>
-    </div>
-
+ 
     <div>
       <label for="memo">Memo:</label>
       <textarea
@@ -39,19 +27,15 @@
 
 <script>
 export default {
-  name: 'ChildFormComponent',
+  name: 'ChildFormComponent2',
   props: {
     firstName: String,
-    lastName: String,
     memo: String
   },
   computed: {
     // Validations for the fields
     isFirstNameValid() {
       return this.firstName && this.firstName.trim() !== '';
-    },
-    isLastNameValid() {
-      return this.lastName && this.lastName.trim() !== '';
     },
     isMemoValid() {
       return this.memo && this.memo.trim() !== '';
@@ -61,9 +45,6 @@ export default {
     updateFirstName(value) {
       this.$emit('update-first-name', value);
     },
-    updateLastName(value) {
-      this.$emit('update-last-name', value);
-    },
     updateMemo(value) {
       this.$emit('update-memo', value);
     },
@@ -72,7 +53,6 @@ export default {
     getFormData() {
       return {
         firstName: this.firstName,
-        lastName: this.lastName,
         memo: this.memo
       };
     }
