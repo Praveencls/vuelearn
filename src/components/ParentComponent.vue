@@ -1,7 +1,10 @@
 <template>
   <div>
-    <child-component :myprop="myprop"></child-component>
-  </div>
+    <child-component 
+      :myprop="myprop" 
+      @change-username="updateUsername"
+    ></child-component>
+    <p class="username">Hello, {{ username }}</p>
 </template>
 
 <script>
@@ -13,6 +16,7 @@ export default {
   data() {
     return {
       myprop: "Hello from ParentComponent Mr. Praveen",
+      username: "Praveen",
     };
   },
 };
