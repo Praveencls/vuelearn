@@ -5,8 +5,8 @@
       <input
         type="text"
         id="firstName"
-        :value="formData.firstName"
-        @input="updateField('firstName', $event.target.value)"
+        :value="firstName"
+        @input="updateFirstName($event.target.value)"
       />
     </div>
     <div>
@@ -14,16 +14,16 @@
       <input
         type="text"
         id="lastName"
-        :value="formData.lastName"
-        @input="updateField('lastName', $event.target.value)"
+        :value="lastName"
+        @input="updateLastName($event.target.value)"
       />
     </div>
     <div>
       <label for="memo">Memo:</label>
       <textarea
         id="memo"
-        :value="formData.memo"
-        @input="updateField('memo', $event.target.value)"
+        :value="memo"
+        @input="updateMemo($event.target.value)"
       ></textarea>
     </div>
   </div>
@@ -32,15 +32,28 @@
 <script>
 export default {
   props: {
-    formData: {
-      type: Object,
-      required: true
-    }
+    firstName: String,
+    lastName: String,
+    memo: String
   },
   methods: {
-    // Emit the updated field value to the parent
-    updateField(field, value) {
-      this.$emit('update-form', { [field]: value });
+    updateFirstName(value) {
+      this.$emit('update-first-name', value);
+    },
+    updateLastName(value) {
+      this.$emit('update-last-name', value);
+    },
+    updateMemo(value) {
+      this.$emit('update-memo', value);
+    },
+
+    // This method returns the current form data
+    getFormData() {
+      return {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        memo: this.memo
+      };
     }
   }
 };
