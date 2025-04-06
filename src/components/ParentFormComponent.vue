@@ -39,18 +39,7 @@
 	  visible: {
 		type: Boolean,
 		default: false,
-	  },
-	  isBusiness: {
-		type: Boolean,
-		default: false,
-	  },
-	},
-	data() {
-	  return {
-		firstName: "",
-		lastName: "",
-		memo: "",
-	  };
+	  }
 	},
 	validations() {
 	  const validations = {

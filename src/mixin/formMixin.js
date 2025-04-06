@@ -1,12 +1,7 @@
 // formMixin.js
+import addressformMixin from "./addressformMixin";
 export default {
-    data() {
-		return {
-			firstName: "",
-			lastName: "",
-			memo: "",
-		};
-	},
+	mixins: [addressformMixin],
 	computed: {
 		isFirstNameValid() {
 			return this.firstName && this.firstName.trim() !== "";
@@ -19,6 +14,19 @@ export default {
 		},
 	},
 	methods: {
+		setInput(event) {
+			const { id, value } = event.target;
+			this.updateField(id, value); // Update the form field
+		},
+		updateField(field, value) {
+			this[field] = value; // Update local data
+			this.$emit("input", { field, value }); // Emit event to parent
+		},
+		resetForm() {
+			this.firstName = "";
+			this.lastName = "";
+			this.memo = "";
+		},
 		updateFirstName(value) {
 			this.$emit("update-first-name", value);
 		},
@@ -33,6 +41,6 @@ export default {
 			this.$emit("update-first-name", "");
 			this.$emit("update-last-name", "");
 			this.$emit("update-memo", "");
-		}
+		},
 	},
 };

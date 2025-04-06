@@ -30,22 +30,7 @@ import formMixin from '../mixin/formMixin';// Import the form mixin
 
 export default {
   name: 'ChildFormComponent2',
-  mixins: [formMixin],
-  methods: {
-    setInput(event) {
-      const { id, value } = event.target;
-      this.updateField(id, value); // Update the form field
-    },
-    updateField(field, value) {
-      this[field] = value; // Update local data
-      this.$emit('input', { field, value }); // Emit event to parent
-    },
-    resetForm() {
-      this.firstName = "";
-      this.lastName = "";
-      this.memo = "";
-    },
-  },
+  mixins: [formMixin]
 };
 </script>
 
